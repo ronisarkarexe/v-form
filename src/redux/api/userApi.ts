@@ -1,3 +1,4 @@
+import { token } from "@/utils/utils";
 import { api } from "./apiSlice";
 
 const userApi = api.injectEndpoints({
@@ -17,9 +18,20 @@ const userApi = api.injectEndpoints({
           method: "GET",
         };
       },
-      providesTags: ["Create"],
+      providesTags: ["Create", "Delete"],
+    }),
+    deleteUser: build.mutation({
+      query: (id) => ({
+        url: `/user/${id}`,
+        method: "DELETE",
+      }),
+      invalidatesTags: ["Delete"],
     }),
   }),
 });
 
-export const { useCreateUserMutation, useGetAllUsersQuery } = userApi;
+export const {
+  useCreateUserMutation,
+  useGetAllUsersQuery,
+  useDeleteUserMutation,
+} = userApi;

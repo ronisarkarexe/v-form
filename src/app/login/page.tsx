@@ -33,6 +33,7 @@ const LoginPage = () => {
       const result = await response.json();
       if (result.success && result.data.accessToken) {
         localStorage.setItem("accessToken2", result.data.accessToken);
+        document.cookie = `accessToken=${result.data.accessToken}; path=/;`
         toast.success("Login successful!");
         dispatch(setIsLogin(true));
         router.push("/");
